@@ -2,14 +2,13 @@
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
   const mineNums = [10,30,40]
 
-  class EmoGrid {
-    constructor(){
-    this.value = 0 // value 1~8 = nearby mine, 9 = mine
-    this.revealed = false
-    this.flagged = false
+  const  EmoGrid = class {
+    constructor(value){
+      this.value = value // value 1~8 = nearby mine, 9 = mine
+      this.revealed = false
+      this.flagged = false
     }
-  }
-  
+}
   
   /*---------------------------- Variables (state) ----------------------------*/
   
@@ -41,10 +40,10 @@
     for(let i = 0; i < boardSize;i++){
       board[i] = new Array(boardSize)
       for(let j = 0; j < boardSize;j++){
-        board[i][j] = new EmoGrid()
+        board[i][j] = new EmoGrid(0)
       }
+    }
     //console.log(board)
-  }
 }
   //Each mine has row and colum number stored as [r,c]
   //[r,c] will be determined by a function
@@ -56,18 +55,29 @@
       board[mine[0]][mine[1]].value = 9
       mineNumIndicator(mine[0],mine[1])
     }
-    console.log(board)
+    
   }
   
   //Increase surrounding value by 1 as a mine set
   //Surrouding will be up down left right upleft upright downleft downright
   //If there is mine already in place, do nothing
   function mineNumIndicator(r,c){
-    if(board[r-1][c])
-
-
+    if(isValidMove(r-1,c)) board[r-1][c].value++
+    if(isValidMove(r-1,c+1)) board[r-1][c+1].value++
+    if(isValidMove(r-1,c-1)) board[r-1][c-1].value++
+    if(isValidMove(r,c+1)) board[r][c+1].value++
+    if(isValidMove(r,c-1)) board[r][c-1].value++
+    if(isValidMove(r+1,c)) board[r+1][c].value++
+    if(isValidMove(r+1,c+1)) board[r+1][c+1].value++
+    if(isValidMove(r+1,c-1)) board[r+1][c-1].value++
   }
-
+  
+  function isValidMove(r,c){
+    if(r < 0 || c < 0) return false
+    if(r >= board.length || c >= board.length ) return false
+    if(board[r][c].value === 9) return false
+    return true
+  }
 
   function chooseEmptySpot(){
     let moves = []
