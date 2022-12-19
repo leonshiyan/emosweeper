@@ -18,7 +18,6 @@
   let lose =  false
   
   /*------------------------ Cached Element References ------------------------*/
-  const squareEles = document.querySelectorAll('.sqr')
   const messageEl = document.getElementById('message')
   const boardEl = document.querySelector('.board')
   const resetBtnEl = document.querySelector('.reset-button')
@@ -34,12 +33,14 @@
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
     drawBoard()
-  }
+    render()
+    }
+
   //Create html elements
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
-    boardEl.style.gridTemplateRows = `repeat(${size}, 8vmin)`
-    boardEl.style.gridTemplateColumns = `repeat(${size}, 8vmin)`
+    boardEl.style.gridTemplateRows = `repeat(${size}, 10vmin)`
+    boardEl.style.gridTemplateColumns = `repeat(${size}, 10vmin)`
     //Use loop to add div into boardEl with ids(0~?)
     for(let i = 0; i < size*size; i++){
       let gridDiv = document.createElement(`div`)
@@ -103,9 +104,15 @@
     let move = moves[Math.floor(Math.random() * moves.length)]
     return move
   }
-  
+  //Update board depending on the state of board[][]
   function updateBoard(){
-
+    const squareEles = document.querySelectorAll('.sqr')
+    const size = boardSizes[playerDifficulty]
+    for (let i = 0; i < size; i++) {
+      for(let j = 0; j < size; j++){
+        squareEles[i*size + j].textContent = board[i][j].revealed?board[i][j].value:'😂'
+      }
+    }
   }
   
   function updateMessage(){
@@ -119,8 +126,25 @@
       sqIdx = parseInt(sqId)
     }
     let move = convertId(sqIdx)
-    console.log(move)
+    if(!lose)checkTile (move)
+    //console.log(move,sqIdx)
     render()
+  }
+
+  //check tile clicked
+  // 9 = dead
+  // 0 reveal nearby
+  // Other value reveal current
+  function checkTile (move){
+    let r = move[0]
+    let c = move[1]
+    board[r][c].revealed = true
+    if(board[r][c].value === 9){
+      lose = true
+      console.log('Boom')
+    }
+
+    console.log(board[r][c])
   }
   //Convert id to corresponding r,c location of board
   function convertId(id){
@@ -128,17 +152,12 @@
     let c = id%boardSizes[playerDifficulty]
     return [r,c]
   }
-  function handleAnimationEnd(event){
-    event.stopPropagation();
-    boardEl.classList.remove('animate__animated','animate__headShake');
-    console.log('animation ended')
-  }
+
   function checkForWinner(){
   }
   
   function render(){
     updateBoard()
-    updateMessage()
   }
   
   /*-------------------------------- Game init --------------------------------*/
