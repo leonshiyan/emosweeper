@@ -13,6 +13,7 @@
   /*---------------------------- Variables (state) ----------------------------*/
   
   let defaultDifficulty = 0
+  let playerDifficulty = 0
   let board
   let lose =  false
   
@@ -29,9 +30,23 @@
   /*-------------------------------- Functions --------------------------------*/
   
   function init(){
-    let playerDifficulty = defaultDifficulty
+    playerDifficulty = defaultDifficulty
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
+    drawBoard()
+  }
+  //Create html elements
+  function drawBoard(){
+    const size = boardSizes[playerDifficulty]
+    boardEl.style.gridTemplateRows = `repeat(${size}, 8vmin)`
+    boardEl.style.gridTemplateColumns = `repeat(${size}, 8vmin)`
+    //Use loop to add div into boardEl with ids(0~?)
+    for(let i = 0; i < size*size; i++){
+      let gridDiv = document.createElement(`div`)
+      gridDiv.setAttribute("class",'sqr')
+      gridDiv.setAttribute("id",i)
+      boardEl.append(gridDiv)
+    }
   }
 
   function boardInit(boardSize){
@@ -43,8 +58,8 @@
         board[i][j] = new EmoGrid(0)
       }
     }
-    //console.log(board)
-}
+  }
+
   //Each mine has row and colum number stored as [r,c]
   //[r,c] will be determined by a function
   //After mine is set, call mineNumIndicator function
@@ -55,7 +70,6 @@
       board[mine[0]][mine[1]].value = 9
       mineNumIndicator(mine[0],mine[1])
     }
-    
   }
   
   //Increase surrounding value by 1 as a mine set
@@ -89,23 +103,10 @@
     let move = moves[Math.floor(Math.random() * moves.length)]
     return move
   }
-
-
-
-
-
-
-
+  //Genarate board html elements
   function updateBoard(){
-    for (let i = 0; i < board.length; i++) {
-      if(board[i]=== 1){
-        squareEles[i].textContent = 'X'
-      }else if(board[i] === -1){
-        squareEles[i].textContent = 'O'
-      }else{
-        squareEles[i].textContent = ''
-      }
-    }
+
+      
   }
   
   function updateMessage(){
@@ -126,62 +127,16 @@
     if (sqId != null){
       sqIdx = parseInt(sqId.slice(2))
     }
-    if (board[sqIdx] || winner){
-      boardAnimation(event)
-      return
-    }
-    playerMove(sqIdx)
-    setTimeout(() => {
-      computerMove()
-    }, 300)
-    
-  }
- 
-  
-  function playerMove(sqIdx){
-    placePiece(sqIdx)
-    checkForTie()
-    checkForWinner()
-    switchPlayerTurn()
     render()
   }
   
-  function boardAnimation(event){
-    boardEl.classList.add('animate__animated','animate__headShake')
-  }
   function handleAnimationEnd(event){
     event.stopPropagation();
     boardEl.classList.remove('animate__animated','animate__headShake');
     console.log('animation ended')
   }
-  function placePiece(idx){
-    board[idx] = turn
-  }
-  
-  function checkForTie(){
-    if(!board.includes(null)) tie = true
-  }
-  
   function checkForWinner(){
-    let result
-    for(combo of winningCombos){
-      result = Math.abs(board[combo[0]] + board[combo[1]] + board[combo[2]])
-      if (result === 3){
-        winner = true
-        return
-      }
-    }
   }
-  
-  function switchPlayerTurn(){
-    if(winner){
-      return
-    }else{
-      turn *= -1
-    }
-  }
-  
-  
   
   function render(){
     updateBoard()
