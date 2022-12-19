@@ -103,33 +103,31 @@
     let move = moves[Math.floor(Math.random() * moves.length)]
     return move
   }
-  //Genarate board html elements
+  
   function updateBoard(){
 
-      
   }
   
   function updateMessage(){
-    const playerMsg = turn == 1? 'X':'O'
-    if(!winner && !tie){
-      messageEl.textContent = `It is player ${playerMsg} turn!`
-    }else if(!winner && tie){
-      messageEl.textContent = `It is a tie game!`
-    }else {
-      messageEl.textContent = `Congratulations, player ${playerMsg} wins!`
-      messageEl.classList.add('animate__animated','animate__flip')
-    }
+
   }
   
   function handleClick (event){
     let sqIdx 
     let sqId = event.target.getAttribute('id')
     if (sqId != null){
-      sqIdx = parseInt(sqId.slice(2))
+      sqIdx = parseInt(sqId)
     }
+    let move = convertId(sqIdx)
+    console.log(move)
     render()
   }
-  
+  //Convert id to corresponding r,c location of board
+  function convertId(id){
+    let r = parseInt(id/boardSizes[playerDifficulty])
+    let c = id%boardSizes[playerDifficulty]
+    return [r,c]
+  }
   function handleAnimationEnd(event){
     event.stopPropagation();
     boardEl.classList.remove('animate__animated','animate__headShake');
