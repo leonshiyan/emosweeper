@@ -15,6 +15,7 @@
   
   let defaultDifficulty = 0
   let board
+  let lose =  false
   
   /*------------------------ Cached Element References ------------------------*/
   const squareEles = document.querySelectorAll('.sqr')
@@ -45,16 +46,29 @@
     //console.log(board)
   }
 }
-
+  //Each mine has row and colum number stored as [r,c]
+  //[r,c] will be determined by a function
+  //After mine is set, call mineNumIndicator function
   function placeMine(playerChoice){
     let mineNum = mineNums[playerChoice]
     for(let idx = mineNum ; idx > 0 ; idx--){
-      let move = chooseEmptySpot()
-      board[move[0]][move[1]].value = 9
-      console.log(move , idx,board[move[0]][move[1]])
+      let mine = chooseEmptySpot()
+      board[mine[0]][mine[1]].value = 9
+      mineNumIndicator(mine[0],mine[1])
     }
     console.log(board)
   }
+  
+  //Increase surrounding value by 1 as a mine set
+  //Surrouding will be up down left right upleft upright downleft downright
+  //If there is mine already in place, do nothing
+  function mineNumIndicator(r,c){
+    if(board[r-1][c])
+
+
+  }
+
+
   function chooseEmptySpot(){
     let moves = []
     for (let i = 0; i < board.length ; i++) {
@@ -65,6 +79,13 @@
     let move = moves[Math.floor(Math.random() * moves.length)]
     return move
   }
+
+
+
+
+
+
+
   function updateBoard(){
     for (let i = 0; i < board.length; i++) {
       if(board[i]=== 1){
