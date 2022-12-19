@@ -138,14 +138,33 @@
   function checkTile (move){
     let r = move[0]
     let c = move[1]
-    board[r][c].revealed = true
+    
     if(board[r][c].value === 9){
+      board[r][c].revealed = true
       lose = true
-      console.log('Boom')
+    }else if (board[r][c].value ===0){
+      dfs(r,c)
+    }else{
+      board[r][c].revealed = true
     }
-
-    console.log(board[r][c])
+    //console.log(board[r][c])
   }
+
+  //Recursive function to reveal 0s and adjacent 0s
+  function dfs(r,c){
+    let nr = board.length
+    let nc = board[0].length
+    if(!isValidMove(r,c) || board[r][c].revealed ||board[r][c].value!== 0) return
+    else board[r][c].revealed = true
+    dfs(r - 1, c)
+    dfs(r + 1, c)
+    dfs(r, c - 1)
+    dfs(r, c + 1)
+  }
+
+
+
+
   //Convert id to corresponding r,c location of board
   function convertId(id){
     let r = parseInt(id/boardSizes[playerDifficulty])
