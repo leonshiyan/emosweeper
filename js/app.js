@@ -1,15 +1,21 @@
-/*-------------------------------- Constants --------------------------------*/
-const winningCombos = [
-  [0,1,2],[3,4,5],[6,7,8],[0,3,6],
-  [1,4,7],[2,5,8],[0,4,8],[2,4,6],
-  ]
-  
+  /*-------------------------------- Constants --------------------------------*/
+  const boardSize = [8,10,12] // 0 easy 1 medium 3 hard
+
+
+  class EmoGrid {
+    constructor(){
+    this.value = 0 // value 1~8 = nearby mine, 9 = mine
+    this.revealed = false
+    this.flagged = false
+    }
+  }
   
   
   /*---------------------------- Variables (state) ----------------------------*/
-  let turn,winner,tie
-  let board = new Array(9)
   
+  let defaultDifficulty = 0
+  let playerDifficulty = 0
+  let board 
   
   /*------------------------ Cached Element References ------------------------*/
   const squareEles = document.querySelectorAll('.sqr')
@@ -20,19 +26,23 @@ const winningCombos = [
   /*----------------------------- Event Listeners -----------------------------*/
   boardEl.addEventListener('click',handleClick)
   resetBtnEl.addEventListener('click',init)
-  boardEl.addEventListener('animationend', handleAnimationEnd, {once: false});
   
   /*-------------------------------- Functions --------------------------------*/
   
   function init(){
-    board.fill(null)
-    turn = -1 
-    winner = false 
-    tie = false 
-    messageEl.classList.remove('animate__animated','animate__flip')
-    render()
+    playerDifficulty = defaultDifficulty
+    boardInit(boardSize[playerDifficulty])
+    
   }
-  
+  function boardInit(boardSize){
+    board = new Array(boardSize)
+    //create board with easyBoardSize
+    for(let i = 0; i < boardSize;i++){
+      board[i] = new Array(boardSize)
+    }
+    console.log(board)
+  }
+
   function updateBoard(){
     for (let i = 0; i < board.length; i++) {
       if(board[i]=== 1){
