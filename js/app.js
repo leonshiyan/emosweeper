@@ -1,6 +1,6 @@
   /*-------------------------------- Constants --------------------------------*/
-  const boardSize = [8,10,12] // 0 easy 1 medium 3 hard
-
+  const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
+  const mineNums = [10,30,40]
 
   class EmoGrid {
     constructor(){
@@ -14,8 +14,7 @@
   /*---------------------------- Variables (state) ----------------------------*/
   
   let defaultDifficulty = 0
-  let playerDifficulty = 0
-  let board 
+  let board
   
   /*------------------------ Cached Element References ------------------------*/
   const squareEles = document.querySelectorAll('.sqr')
@@ -30,19 +29,42 @@
   /*-------------------------------- Functions --------------------------------*/
   
   function init(){
-    playerDifficulty = defaultDifficulty
-    boardInit(boardSize[playerDifficulty])
-    
+    let playerDifficulty = defaultDifficulty
+    boardInit(boardSizes[playerDifficulty])
+    placeMine(playerDifficulty)
   }
+
   function boardInit(boardSize){
     board = new Array(boardSize)
-    //create board with easyBoardSize
+    //create board with boardSize
     for(let i = 0; i < boardSize;i++){
       board[i] = new Array(boardSize)
+      for(let j = 0; j < boardSize;j++){
+        board[i][j] = new EmoGrid()
+      }
+    //console.log(board)
+  }
+}
+
+  function placeMine(playerChoice){
+    let mineNum = mineNums[playerChoice]
+    for(let idx = mineNum ; idx > 0 ; idx--){
+      let move = chooseEmptySpot()
+      board[move[0]][move[1]].value = 9
+      console.log(move , idx,board[move[0]][move[1]])
     }
     console.log(board)
   }
-
+  function chooseEmptySpot(){
+    let moves = []
+    for (let i = 0; i < board.length ; i++) {
+      for (let j = 0; j < board.length ; j++)
+      if(board[i,j].value !== 9) moves.push([i,j])
+    }
+    //Select a move
+    let move = moves[Math.floor(Math.random() * moves.length)]
+    return move
+  }
   function updateBoard(){
     for (let i = 0; i < board.length; i++) {
       if(board[i]=== 1){
@@ -83,28 +105,7 @@
     }, 300)
     
   }
-  
-  //Add AI movement
-    //  -AI is X (1) at current state
-    //  -happens only after player click
-    //  -find an empty spot to place ,no winning prevention
-    //  -no move if there is a winner and or tie game
-  function computerMove(){
-    if(!winner && !tie){
-      let computerIdx = chooseEmptySpot()
-    playerMove(computerIdx)
-    }
-  }
-  
-  function chooseEmptySpot(){
-    let moves = []
-    for (let index = 0; index < board.length; index++) {
-      if(board[index]===null) moves.push(index)
-    }
-    //Select a move
-    let move = moves[Math.floor(Math.random() * moves.length)]
-    return move
-  }
+ 
   
   function playerMove(sqIdx){
     placePiece(sqIdx)
