@@ -42,6 +42,7 @@ let colors = [
   
   function init(){
     playerDifficulty = defaultDifficulty
+    lose = false
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
     drawBoard()
@@ -159,8 +160,8 @@ let colors = [
     }
     let move = convertId(sqIdx)
     if(!lose)checkTile (move)
-    //if(lose) revealAll()
-    //console.log(move,sqIdx)
+    if(lose) revealAll()
+    console.log(lose)
     
     render()
   }
