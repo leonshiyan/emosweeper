@@ -1,6 +1,6 @@
   /*-------------------------------- Constants --------------------------------*/
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
-  const mineNums = [10,30,40]
+  const mineNums = [10,15,20]
 
   const  EmoGrid = class {
     constructor(value){
@@ -12,7 +12,7 @@
   
   /*---------------------------- Variables (state) ----------------------------*/
   
-  let defaultDifficulty = 0
+  let defaultDifficulty = 1
   let playerDifficulty = 0
   let board
   let lose =  false
@@ -154,12 +154,20 @@
   function dfs(r,c){
     let nr = board.length
     let nc = board[0].length
-    if(!isValidMove(r,c) || board[r][c].revealed ||board[r][c].value!== 0) return
-    else board[r][c].revealed = true
-    dfs(r - 1, c)
-    dfs(r + 1, c)
-    dfs(r, c - 1)
-    dfs(r, c + 1)
+    if(!isValidMove(r,c) || board[r][c].revealed) {
+      console.log(`stopped at r :${r} c:${c}`)
+      return
+    }
+    else if(board[r][c].value !== 0){
+      board[r][c].revealed = true
+      return
+    }else{
+      board[r][c].revealed = true
+      dfs(r - 1, c)
+      dfs(r + 1, c)
+      dfs(r, c - 1)
+      dfs(r, c + 1)
+    }   
   }
 
 
