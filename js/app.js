@@ -1,6 +1,7 @@
   /*-------------------------------- Constants --------------------------------*/
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
   const mineNums = [10,15,20]
+  const bomb = '💣'
 
   const  EmoGrid = class {
     constructor(value){
@@ -9,7 +10,17 @@
       this.flagged = false
     }
 }
-  
+let colors = [
+  '',
+  '#0000FA',
+  '#4B802D',
+  '#DB1300',
+  '#202081',
+  '#690400',
+  '#457A7A',
+  '#1B1B1B',
+  '#7A7A7A',
+];
   /*---------------------------- Variables (state) ----------------------------*/
   
   let defaultDifficulty = 1
@@ -21,6 +32,7 @@
   const messageEl = document.getElementById('message')
   const boardEl = document.querySelector('.board')
   const resetBtnEl = document.querySelector('.reset-button')
+
   //console.log(resetBtnEl)
   /*----------------------------- Event Listeners -----------------------------*/
   boardEl.addEventListener('click',handleClick)
@@ -109,11 +121,24 @@
     const squareEles = document.querySelectorAll('.sqr')
     const size = boardSizes[playerDifficulty]
     for (let i = 0; i < size; i++) {
-      for(let j = 0; j < size; j++){
-        squareEles[i*size + j].textContent = board[i][j].revealed?board[i][j].value:'😂'
+      for(let j = 0; j < size; j++) {
+        //squareEles[i*size + j].textContent = board[i][j].revealed?board[i][j].value:'😂'
+        if(board[i][j].revealed){
+          if(board[i][j].value === 0){
+            squareEles[i*size + j].textContent = ''
+          }else if(board[i][j].value === 9){
+            squareEles[i*size + j].textContent = bomb
+            //call a function to reveal all!!!!!!!!!!!!!
+          }
+          else{
+          squareEles[i*size + j].textContent = board[i][j].value
+          squareEles[i*size + j].style.color = colors[board[i][j].value]
+          }
+        }else squareEles[i*size + j].textContent = '😂'
       }
     }
   }
+
   
   function updateMessage(){
 
@@ -155,7 +180,6 @@
     let nr = board.length
     let nc = board[0].length
     if(!isValidMove(r,c) || board[r][c].revealed) {
-      console.log(`stopped at r :${r} c:${c}`)
       return
     }
     else if(board[r][c].value !== 0){
