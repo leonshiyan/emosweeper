@@ -1,10 +1,8 @@
-
-
 body {
   background-color: #131200;
 /* Use a system font, if none are available use an available sans-sarif   font */
-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-  Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+font-family: 'Silkscreen', cursive;
+;
 margin: 0;
 height: 100vh;
 display: flex;
@@ -31,8 +29,8 @@ font-size: 64px;
 .sqr-revealed{
   color : lightcoral
 }
-div {
-border: 3px solid #c59b76;
+section>div {
+border: 3px solid #9f4773;
 font-size: 7vmin;
 text-align: center;
 vertical-align: middle;
@@ -50,5 +48,15 @@ font-size: 16px;
 cursor: pointer;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 width: 10em;
-margin: 100px auto;
+margin: 100px auto
+}
+
+.difficulties-button{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  cursor: pointer;
+  margin: 30px auto;
 }

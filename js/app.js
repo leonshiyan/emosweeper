@@ -23,7 +23,7 @@ let colors = [
 ];
   /*---------------------------- Variables (state) ----------------------------*/
   
-  let defaultDifficulty = 1
+  let currentDifficulty = 0
   let playerDifficulty = 0
   let board
   let lose =  false
@@ -32,16 +32,30 @@ let colors = [
   const messageEl = document.getElementById('message')
   const boardEl = document.querySelector('.board')
   const resetBtnEl = document.querySelector('.reset-button')
+  const difficultiesEl = document.querySelector('.difficulties-button')
 
   //console.log(resetBtnEl)
   /*----------------------------- Event Listeners -----------------------------*/
   boardEl.addEventListener('click',handleClick)
   resetBtnEl.addEventListener('click',init)
+  difficultiesEl.addEventListener('click',chooseDifficulty)
   
   /*-------------------------------- Functions --------------------------------*/
-  
+  function chooseDifficulty(event){
+    console.log()
+    if(event.target.id === 'easy'){
+      currentDifficulty = 0
+    }else if(event.target.id === 'medium'){
+      currentDifficulty = 1
+    }else if(event.target.id === 'hard'){
+      currentDifficulty = 2
+    }
+    init()
+  }
+
+
   function init(){
-    playerDifficulty = defaultDifficulty
+    playerDifficulty = currentDifficulty
     lose = false
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
@@ -117,7 +131,6 @@ let colors = [
     }
     //Select a move
     let move = moves[Math.floor(Math.random() * moves.length)]
-    console.log(move)
     return move
   }
   //Update board depending on the state of board[][]
