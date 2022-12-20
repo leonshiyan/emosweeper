@@ -51,6 +51,7 @@ let colors = [
   //Create html elements
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
+    boardEl.textContent = ''
     boardEl.style.gridTemplateRows = `repeat(${size}, 10vmin)`
     boardEl.style.gridTemplateColumns = `repeat(${size}, 10vmin)`
     //Use loop to add div into boardEl with ids(0~?)
@@ -128,7 +129,6 @@ let colors = [
             squareEles[i*size + j].textContent = ''
           }else if(board[i][j].value === 9){
             squareEles[i*size + j].textContent = bomb
-            //call a function to reveal all!!!!!!!!!!!!!
           }
           else{
           squareEles[i*size + j].textContent = board[i][j].value
@@ -138,7 +138,14 @@ let colors = [
       }
     }
   }
-
+  function revealAll(){
+    const size = boardSizes[playerDifficulty]
+    for (let i = 0; i < size; i++) {
+      for(let j = 0; j < size; j++) {
+        board[i][j].revealed = true
+      }
+    }
+  }
   
   function updateMessage(){
 
@@ -152,7 +159,9 @@ let colors = [
     }
     let move = convertId(sqIdx)
     if(!lose)checkTile (move)
+    //if(lose) revealAll()
     //console.log(move,sqIdx)
+    
     render()
   }
 
