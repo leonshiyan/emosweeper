@@ -20,13 +20,14 @@ let colors = [
   '#457A7A',
   '#1B1B1B',
   '#7A7A7A',
-];
+]
   /*---------------------------- Variables (state) ----------------------------*/
   
   let currentDifficulty = 0
   let playerDifficulty = 0
   let board
-  let lose =  false
+  let gameStop = false
+  let win = false
   
   /*------------------------ Cached Element References ------------------------*/
   const messageEl = document.getElementById('message')
@@ -57,7 +58,8 @@ let colors = [
 
   function init(){
     playerDifficulty = currentDifficulty
-    lose = false
+    gameStop = false
+    win = false
     bombsEl.textContent = `Number of bombs ${mineNums[playerDifficulty]}`
     messageEl.textContent='👇Make your first move👇'
     boardInit(boardSizes[playerDifficulty])
@@ -165,13 +167,18 @@ let colors = [
         board[i][j].revealed = true
       }
     }
+    render()
   }
-  
+  //Display message depending on win and stop condition
   function updateMessage(){
-    if(lose == true){
+    if(gameStop){
+      if(win){
+        messageEl.textContent = 'You find all the bombs!'
+        gameStop = true
+      }else {
       messageEl.textContent = 'Boom!You lose!'
+      }
     }
-
   }
   
   function handleClick (event){
@@ -181,8 +188,8 @@ let colors = [
       sqIdx = parseInt(sqId)
     }
     let move = convertId(sqIdx)
-    if(!lose)checkTile (move)
-    if(lose) revealAll()
+    if(!gameStop) checkTile (move)
+    checkForWinner()
     render()
   }
 
@@ -196,13 +203,12 @@ let colors = [
     
     if(board[r][c].value === 9){
       board[r][c].revealed = true
-      lose = true
+      gameStop = true
     }else if (board[r][c].value ===0){
       dfs(r,c)
     }else{
       board[r][c].revealed = true
     }
-    //console.log(board[r][c])
   }
 
   //Recursive function to reveal 0s and adjacent 0s
@@ -223,18 +229,30 @@ let colors = [
       dfs(r, c + 1)
     }   
   }
-
-
-
-
   //Convert id to corresponding r,c location of board
   function convertId(id){
     let r = parseInt(id/boardSizes[playerDifficulty])
     let c = id%boardSizes[playerDifficulty]
     return [r,c]
   }
-
+  //Check for winner
+  //Winning condition: all tiles revealed and no bomb triggered
   function checkForWinner(){
+    if(gameStop) {
+      revealAll()
+      return
+    }
+    const size = boardSizes[playerDifficulty]
+    for (let i = 0; i < size; i++) {
+      for(let j = 0; j < size; j++) {
+        if(board[i][j].value != 9 && board[i][j].revealed == false){
+          win =false
+          return
+        }
+      }
+    }
+    win = true
+    gameStop = true
   }
   
   function render(){

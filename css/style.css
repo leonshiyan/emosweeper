@@ -18,7 +18,7 @@ margin: 0 auto;
 }
 h2#message{
 margin: 32px auto;
-color: #78bc61;
+color: #061501;
 font-size: 32px;
 }
 h4#bombs{
@@ -27,7 +27,7 @@ h4#bombs{
   }
 h1{
 margin: 32px auto;
-color:#c0c781;
+color:#061501;
 font-size: 64px;
 }
 .sqr-revealed{
