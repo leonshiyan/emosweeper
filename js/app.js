@@ -2,6 +2,7 @@
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
   const mineNums = [10,15,20]
   const bomb = '💣'
+  const emoji = '😂'
 
   const  EmoGrid = class {
     constructor(value){
@@ -72,8 +73,8 @@ let colors = [
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
     boardEl.textContent = ''
-    boardEl.style.gridTemplateRows = `repeat(${size}, 10vmin)`
-    boardEl.style.gridTemplateColumns = `repeat(${size}, 10vmin)`
+    boardEl.style.gridTemplateRows = `repeat(${size}, 5vmin)`
+    boardEl.style.gridTemplateColumns = `repeat(${size}, 5vmin)`
     //Use loop to add div into boardEl with ids(0~?)
     for(let i = 0; i < size*size; i++){
       let gridDiv = document.createElement(`div`)
@@ -144,7 +145,6 @@ let colors = [
     const size = boardSizes[playerDifficulty]
     for (let i = 0; i < size; i++) {
       for(let j = 0; j < size; j++) {
-        //squareEles[i*size + j].textContent = board[i][j].revealed?board[i][j].value:'😂'
         if(board[i][j].revealed){
           if(board[i][j].value === 0){
             squareEles[i*size + j].textContent = ''
@@ -155,7 +155,7 @@ let colors = [
           squareEles[i*size + j].textContent = board[i][j].value
           squareEles[i*size + j].style.color = colors[board[i][j].value]
           }
-        }else squareEles[i*size + j].textContent = '😂'
+        }else squareEles[i*size + j].textContent = emoji
       }
     }
   }
