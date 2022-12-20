@@ -33,6 +33,7 @@ let colors = [
   const boardEl = document.querySelector('.board')
   const resetBtnEl = document.querySelector('.reset-button')
   const difficultiesEl = document.querySelector('.difficulties-button')
+  const bombsEl = document.getElementById('bombs')
 
   //console.log(resetBtnEl)
   /*----------------------------- Event Listeners -----------------------------*/
@@ -57,6 +58,8 @@ let colors = [
   function init(){
     playerDifficulty = currentDifficulty
     lose = false
+    bombsEl.textContent = `Number of bombs ${mineNums[playerDifficulty]}`
+    messageEl.textContent='👇Make your first move👇'
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
     drawBoard()
@@ -154,7 +157,7 @@ let colors = [
       }
     }
   }
-  
+
   function revealAll(){
     const size = boardSizes[playerDifficulty]
     for (let i = 0; i < size; i++) {

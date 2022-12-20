@@ -21,6 +21,10 @@ margin: 32px auto;
 color: #78bc61;
 font-size: 32px;
 }
+h4#bombs{
+  margin: 16px auto;
+  font-size: 16px;
+  }
 h1{
 margin: 32px auto;
 color:#c0c781;
