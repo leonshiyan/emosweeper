@@ -1,5 +1,5 @@
 body {
-  background-color: #131200;
+  background-color: #7f8f1a;
 /* Use a system font, if none are available use an available sans-sarif   font */
 font-family: 'Silkscreen', cursive;
 ;
@@ -30,11 +30,11 @@ font-size: 64px;
   color : lightcoral
 }
 section>div {
-border: 3px solid #9f4773;
+border: 2px solid #9f4773;
 font-size: 7vmin;
 text-align: center;
 vertical-align: middle;
-color : #c59b76
+background-color: antiquewhite;
 }
 
 .reset-button {
@@ -48,7 +48,7 @@ font-size: 16px;
 cursor: pointer;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 width: 10em;
-margin: 100px auto
+margin: 48px auto
 }
 
 .difficulties-button{

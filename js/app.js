@@ -154,6 +154,7 @@ let colors = [
       }
     }
   }
+  
   function revealAll(){
     const size = boardSizes[playerDifficulty]
     for (let i = 0; i < size; i++) {
@@ -164,6 +165,9 @@ let colors = [
   }
   
   function updateMessage(){
+    if(lose == true){
+      messageEl.textContent = 'Boom!You lose!'
+    }
 
   }
   
@@ -179,7 +183,7 @@ let colors = [
     render()
   }
 
-  //check tile clicked
+  // Check tile clicked
   // 9 = dead
   // 0 reveal nearby
   // Other value reveal current
@@ -232,6 +236,7 @@ let colors = [
   
   function render(){
     updateBoard()
+    updateMessage()
   }
   
   /*-------------------------------- Game init --------------------------------*/
