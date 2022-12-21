@@ -10,7 +10,7 @@ body {
 section.board {
   display: grid;
   grid-gap: 0vmin;
-margin: 0 auto;
+  margin: 0 auto;
 }
 h2#message{
   margin: 32px auto;
@@ -79,21 +79,21 @@ button:hover{
     font-size: 5vmax;
   }
   button{
-    margin: 10vh auto;
+    margin: 7vh auto;
     width: 12vh;
-    padding: 1vh;
+    font-size: 3vw;
   }
   h2#message{
     margin: 2vh auto;
     color: #061501;
-    font-size: 24px;
+    font-size: 5vw;
   }
   .difficulties-button>button{
     margin: 0 1vh;
   }
   section>div {
     border: 2px ridge rgba(211, 220, 50, .6);
-    font-size: 1em;
+    font-size: 3.5vw;
     text-align: center;
     vertical-align: middle;
     background-color: antiquewhite;
