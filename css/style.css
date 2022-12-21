@@ -74,15 +74,15 @@ button:hover{
 .difficulties-button>button{
   margin: auto 2vh;
 }
-.reset-button{
-}
 .toggle {
-  --width: 10vw;
+  --width: 80px;
   --height: calc(var(--width) / 2);
   --border-radius: calc(var(--height) / 2);
-
   display: inline-block;
   cursor: pointer;
+  position: absolute;
+  right: 5vw;
+  top :100px
 }
 .toggle_input {
   display: none;
