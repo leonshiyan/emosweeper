@@ -74,6 +74,46 @@ button:hover{
 .difficulties-button>button{
   margin: auto 2vh;
 }
+.reset-button{
+}
+.toggle {
+  --width: 10vw;
+  --height: calc(var(--width) / 2);
+  --border-radius: calc(var(--height) / 2);
+
+  display: inline-block;
+  cursor: pointer;
+}
+.toggle_input {
+  display: none;
+}
+.toggle_fill {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  background: #dddddd;
+  transition: background 0.2s;
+}
+.toggle_fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--height);
+  width: var(--height);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s;
+}
+.toggle_input:checked ~ .toggle_fill {
+  background: #009578;
+}
+
+.toggle_input:checked ~ .toggle_fill::after {
+  transform: translateX(var(--height));
+}
 @media (max-width: 600px) {
   h1.title{
     margin: 2vh auto;
