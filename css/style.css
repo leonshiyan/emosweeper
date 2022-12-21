@@ -31,7 +31,7 @@ h1{
 }
 section>div {
   border: 4px ridge rgba(211, 220, 50, .6);
-  font-size: 3vmin;
+  font-size: 2vw;
   text-align: center;
   vertical-align: middle;
   background-color: antiquewhite;
@@ -73,3 +73,33 @@ button:hover{
 .difficulties-button>button{
   margin: 16px 16px;
 }
+@media (max-width: 600px) {
+  h1{
+    margin: 9vh auto;
+    font-size: 5vmax;
+  }
+  button{
+    margin: 10vh auto;
+    width: 12vh;
+    padding: 1vh;
+  }
+  h2#message{
+    margin: 2vh auto;
+    color: #061501;
+    font-size: 24px;
+  }
+  .difficulties-button>button{
+    margin: 0 1vh;
+  }
+  section>div {
+    border: 2px ridge rgba(211, 220, 50, .6);
+    font-size: 1em;
+    text-align: center;
+    vertical-align: middle;
+    background-color: antiquewhite;
+    cursor: pointer;
+    transition: border-width 0.1s linear;
+  }
+
+}
+
