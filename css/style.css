@@ -10,10 +10,10 @@ body {
 section.board {
   display: grid;
   grid-gap: 0vmin;
-  margin: 0 auto;
+  margin: 1em auto;
 }
 h2#message{
-  margin: 32px auto;
+  margin: 0 auto;
   color: #061501;
   font-size: 32px;
 }
@@ -30,6 +30,7 @@ h1.title{
 .sqr-revealed{
   color : lightcoral
 }
+
 section>div {
   border: 4px ridge rgba(211, 220, 50, .6);
   font-size: 2vw;
@@ -73,6 +74,11 @@ button:hover{
 }
 .difficulties-button>button{
   margin: auto 2vh;
+}
+footer{
+  display: inherit;
+  align-items: center;
+  justify-content:center;
 }
 .toggle {
   --width: 80px;
@@ -140,6 +146,16 @@ button:hover{
     background-color: antiquewhite;
     cursor: pointer;
     transition: border-width 0.1s linear;
+  }
+  .toggle {
+    --width: 40px;
+    --height: calc(var(--width) / 2);
+    --border-radius: calc(var(--height) / 2);
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    right: 5vw;
+    top :10vh
   }
 
 }

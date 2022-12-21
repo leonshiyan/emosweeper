@@ -9,20 +9,19 @@
     constructor(value){
       this.value = value // value 1~8 = nearby mine, 9 = mine
       this.revealed = false
-      this.flagged = false
     }
-}
-let colors = [
-  '',
-  '#0000FA',
-  '#4B802D',
-  '#DB1300',
-  '#202081',
-  '#690400',
-  '#457A7A',
-  '#1B1B1B',
-  '#7A7A7A',
-]
+  }
+  let colors = [
+    '',
+    '#0000FA',
+    '#4B802D',
+    '#DB1300',
+    '#202081',
+    '#690400',
+    '#457A7A',
+    '#1B1B1B',
+    '#7A7A7A',
+  ]
   /*---------------------------- Variables (state) ----------------------------*/
   
   let currentDifficulty = 0
@@ -58,26 +57,24 @@ let colors = [
     }
     init()
   }
-
-
   function init(){
     playerDifficulty = currentDifficulty
     gameStop = false
     win = false
     bombsEl.textContent = `Number of bombs ${mineNums[playerDifficulty]}`
+    
     messageEl.textContent='👇Make your first move👇'
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
     drawBoard()
     render()
-    }
-
+  }
   //Create html elements
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
     boardEl.textContent = ''
-    boardEl.style.gridTemplateRows = `repeat(${size}, 3vmax)`
-    boardEl.style.gridTemplateColumns = `repeat(${size}, 3vmax)`
+    boardEl.style.gridTemplateRows = `repeat(${size},3.5vmax)`
+    boardEl.style.gridTemplateColumns = `repeat(${size}, 3.5vmax)`
     //Use loop to add div into boardEl with ids(0~?)
     for(let i = 0; i < size*size; i++){
       let gridDiv = document.createElement(`div`)
@@ -158,8 +155,8 @@ let colors = [
             squareEles[i*size + j].textContent = bomb
           }
           else{
-          squareEles[i*size + j].textContent = board[i][j].value
-          squareEles[i*size + j].style.color = colors[board[i][j].value]
+            squareEles[i*size + j].textContent = board[i][j].value
+            squareEles[i*size + j].style.color = colors[board[i][j].value]
           }
         }else squareEles[i*size + j].textContent = emoji
       }
@@ -175,6 +172,7 @@ let colors = [
     }
     render()
   }
+
   //Display message depending on win and stop condition
   function updateMessage(){
     if(gameStop){
@@ -182,7 +180,7 @@ let colors = [
         messageEl.textContent = 'You find all the bombs!'
         gameStop = true
       }else {
-      messageEl.textContent = 'Boom!You lose!'
+        messageEl.textContent = 'Boom!You lose!'
       }
     }
   }
@@ -198,9 +196,7 @@ let colors = [
     checkForWinner()
     render()
   }
-  function handleBgm(){
-    bgmAudio.toggleBGM()
-  }
+  
   // Check tile clicked
   // 9 = dead
   // 0 reveal nearby
@@ -266,6 +262,9 @@ let colors = [
   function render(){
     updateBoard()
     updateMessage()
+  }
+  function handleBgm(){
+    bgmAudio.toggleBGM()
   }
   
   /*-------------------------------- Game init --------------------------------*/
