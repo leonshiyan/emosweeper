@@ -1,4 +1,5 @@
   /*-------------------------------- Constants --------------------------------*/
+  import * as bgmAudio from '../js/audios.js'
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
   const mineNums = [10,15,20]
   const bomb = '💣'
@@ -36,12 +37,14 @@ let colors = [
   const resetBtnEl = document.querySelector('.reset-button')
   const difficultiesEl = document.querySelector('.difficulties-button')
   const bombsEl = document.getElementById('bombs')
+  const bgmEl = document.getElementById('myToggle')
 
   //console.log(resetBtnEl)
   /*----------------------------- Event Listeners -----------------------------*/
   boardEl.addEventListener('click',handleClick)
   resetBtnEl.addEventListener('click',init)
   difficultiesEl.addEventListener('click',chooseDifficulty)
+  bgmEl.addEventListener('click',handleBgm)
   
   /*-------------------------------- Functions --------------------------------*/
   function chooseDifficulty(event){
@@ -195,7 +198,9 @@ let colors = [
     checkForWinner()
     render()
   }
-
+  function handleBgm(){
+    bgmAudio.playBGM()
+  }
   // Check tile clicked
   // 9 = dead
   // 0 reveal nearby
