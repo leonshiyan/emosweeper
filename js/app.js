@@ -130,9 +130,12 @@ let colors = [
 
   function chooseEmptySpot(){
     let moves = []
-    for (let i = 0; i < board.length ; i++) {
-      for (let j = 0; j < board.length ; j++){
-        if(board[i,j].value !== 9) moves.push([i,j])
+    let size = boardSizes[playerDifficulty]
+    for (let i = 0; i < size ; i++) {
+      for (let j = 0; j < size ; j++){
+        if(board[i][j].value !== 9){
+          moves.push([i,j])
+        } 
       }
     }
     //Select a move
