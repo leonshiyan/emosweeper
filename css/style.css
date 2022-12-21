@@ -21,10 +21,11 @@ h4#bombs{
   margin: 16px auto;
   font-size: 16px;
 }
-h1{
+h1.title{
   margin: 32px auto;
   color:#061501;
   font-size: 64px;
+  height: 100px;
 }
 .sqr-revealed{
   color : lightcoral
@@ -68,14 +69,14 @@ button:hover{
   align-items: center;
   justify-content:center;
   cursor: pointer;
-  margin: auto;
+  margin: 2vh 3vw;
 }
 .difficulties-button>button{
-  margin: 16px 16px;
+  margin: auto 2vh;
 }
 @media (max-width: 600px) {
-  h1{
-    margin: 9vh auto;
+  h1.title{
+    margin: 2vh auto;
     font-size: 5vmax;
   }
   button{
