@@ -1,10 +1,15 @@
 let bgm = new Audio('../assets/Day-Dreams.mp3')
 
-function playBGM() {
+function toggleBGM() {
   bgm.volume = 0.25
-  bgm.play()
+  bgm.loop = true
+  if(bgm.paused) {
+    bgm.play();
+  } else {
+    bgm.pause();
+  }
 }
 
 export {
-  playBGM
+  toggleBGM
 }

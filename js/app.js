@@ -199,7 +199,7 @@ let colors = [
     render()
   }
   function handleBgm(){
-    bgmAudio.playBGM()
+    bgmAudio.toggleBGM()
   }
   // Check tile clicked
   // 9 = dead
