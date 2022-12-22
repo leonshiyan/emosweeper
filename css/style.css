@@ -88,7 +88,7 @@ footer{
   cursor: pointer;
   position: absolute;
   right: 5vw;
-  top :100px
+  top :80px;
 }
 .toggle_input {
   display: none;
@@ -155,7 +155,7 @@ footer{
     cursor: pointer;
     position: absolute;
     right: 5vw;
-    top :10vh
+    top :7vh
   }
 
 }
