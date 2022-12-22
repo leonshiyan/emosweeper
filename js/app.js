@@ -1,4 +1,4 @@
-  /*-------------------------------- Constants --------------------------------*/
+  /*---------- Constants ----------*/
   import * as bgmAudio from '../js/audios.js'
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
   const mineNums = [10,15,20]
@@ -22,7 +22,7 @@
     '#1B1B1B',
     '#7A7A7A',
   ]
-  /*---------------------------- Variables (state) ----------------------------*/
+  /*---------- Variables (state) ----------*/
   
   let currentDifficulty = 0
   let playerDifficulty = 0
@@ -30,7 +30,7 @@
   let gameStop = false
   let win = false
   
-  /*------------------------ Cached Element References ------------------------*/
+  /*---------- Cached Element References ----------*/
   const messageEl = document.getElementById('message')
   const boardEl = document.querySelector('.board')
   const resetBtnEl = document.querySelector('.reset-button')
@@ -39,13 +39,13 @@
   const bgmEl = document.getElementById('myToggle')
 
   //console.log(resetBtnEl)
-  /*----------------------------- Event Listeners -----------------------------*/
+  /*---------- Event Listeners ----------*/
   boardEl.addEventListener('click',handleClick)
   resetBtnEl.addEventListener('click',init)
   difficultiesEl.addEventListener('click',chooseDifficulty)
   bgmEl.addEventListener('click',handleBgm)
   
-  /*-------------------------------- Functions --------------------------------*/
+  /*---------- Functions ----------*/
   function chooseDifficulty(event){
     console.log()
     if(event.target.id === 'easy'){
@@ -120,14 +120,14 @@
     if(isValidMove(r+1,c+1)) board[r+1][c+1].value++
     if(isValidMove(r+1,c-1)) board[r+1][c-1].value++
   }
-  
+  //Check if the move is valid
   function isValidMove(r,c){
     if(r < 0 || c < 0) return false
     if(r >= board.length || c >= board.length ) return false
     if(board[r][c].value === 9) return false
     return true
   }
-
+  //Choose an empty spot to move
   function chooseEmptySpot(){
     let moves = []
     let size = boardSizes[playerDifficulty]
@@ -267,6 +267,6 @@
     bgmAudio.toggleBGM()
   }
   
-  /*-------------------------------- Game init --------------------------------*/
+  /*---------- Game init ----------*/
   init()
   

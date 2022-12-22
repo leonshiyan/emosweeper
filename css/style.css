@@ -120,6 +120,7 @@ footer{
 .toggle_input:checked ~ .toggle_fill::after {
   transform: translateX(var(--height));
 }
+/* For most mobile devices */
 @media (max-width: 600px) {
   h1.title{
     margin: 2vh auto;
