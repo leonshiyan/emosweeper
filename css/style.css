@@ -33,7 +33,7 @@ h1.title{
 
 section>div {
   border: 4px ridge rgba(211, 220, 50, .6);
-  font-size: 2vw;
+  font-size: 1.4vw;
   text-align: center;
   vertical-align: middle;
   background-color: antiquewhite;
@@ -141,7 +141,7 @@ footer{
   }
   section>div {
     border: 2px ridge rgba(211, 220, 50, .6);
-    font-size: 3.5vw;
+    font-size: 2vw;
     text-align: center;
     vertical-align: middle;
     background-color: antiquewhite;
