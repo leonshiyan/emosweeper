@@ -1,7 +1,7 @@
   /*---------- Constants ----------*/
   import * as bgmAudio from '../js/audios.js'
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
-  const mineNums = [10,15,20]
+  const mineNums = [10,20,30]
   const bomb = '💣'
   const emoji = '😂'
 
