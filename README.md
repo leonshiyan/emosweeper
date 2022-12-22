@@ -10,9 +10,9 @@
 
 
 ### Technologies Used:
-+ HTML
-+ JavaScript
-+ CSS
++ **HTML**
++ **JavaScript**
++ **CSS**
 
 ---
 ## Whats Next?
