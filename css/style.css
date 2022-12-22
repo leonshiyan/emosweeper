@@ -27,9 +27,6 @@ h1.title{
   font-size: 64px;
   height: 100px;
 }
-.sqr-revealed{
-  color : lightcoral
-}
 
 section>div {
   border: 4px ridge rgba(211, 220, 50, .6);
@@ -141,7 +138,7 @@ footer{
   }
   section>div {
     border: 2px ridge rgba(211, 220, 50, .6);
-    font-size: 2vw;
+    font-size: 2.4vw;
     text-align: center;
     vertical-align: middle;
     background-color: antiquewhite;

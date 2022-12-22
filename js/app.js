@@ -60,8 +60,8 @@
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
     boardEl.textContent = ''
-    boardEl.style.gridTemplateRows = `repeat(${size},2.2vmax)`
-    boardEl.style.gridTemplateColumns = `repeat(${size}, 2.2vmax)`
+    boardEl.style.gridTemplateRows = ` repeat(${size},2.6vmax)`
+    boardEl.style.gridTemplateColumns = ` repeat(${size}, 2.6vmax)`
     //Use loop to add div into boardEl with ids(0~?)
     for(let i = 0; i < size*size; i++){
       let gridDiv = document.createElement(`div`)
