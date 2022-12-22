@@ -121,7 +121,7 @@ footer{
   transform: translateX(var(--height));
 }
 /* For most mobile devices */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   h1.title{
     margin: 2vh auto;
     font-size: 5vmax;
