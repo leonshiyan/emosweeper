@@ -38,31 +38,18 @@
   const bombsEl = document.getElementById('bombs')
   const bgmEl = document.getElementById('myToggle')
 
-  //console.log(resetBtnEl)
   /*---------- Event Listeners ----------*/
   boardEl.addEventListener('click',handleClick)
   resetBtnEl.addEventListener('click',init)
   difficultiesEl.addEventListener('click',chooseDifficulty)
   bgmEl.addEventListener('click',handleBgm)
-  
+
   /*---------- Functions ----------*/
-  function chooseDifficulty(event){
-    console.log()
-    if(event.target.id === 'easy'){
-      currentDifficulty = 0
-    }else if(event.target.id === 'medium'){
-      currentDifficulty = 1
-    }else if(event.target.id === 'hard'){
-      currentDifficulty = 2
-    }
-    init()
-  }
   function init(){
     playerDifficulty = currentDifficulty
     gameStop = false
     win = false
     bombsEl.textContent = `Number of bombs ${mineNums[playerDifficulty]}`
-    
     messageEl.textContent='👇Make your first move👇'
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
@@ -94,7 +81,16 @@
       }
     }
   }
-
+  function chooseDifficulty(event){
+    if(event.target.id === 'easy'){
+      currentDifficulty = 0
+    }else if(event.target.id === 'medium'){
+      currentDifficulty = 1
+    }else if(event.target.id === 'hard'){
+      currentDifficulty = 2
+    }
+    init()
+  }
   //Each mine has row and colum number stored as [r,c]
   //[r,c] will be determined by a function
   //After mine is set, call mineNumIndicator function
@@ -204,7 +200,6 @@
   function checkTile (move){
     let r = move[0]
     let c = move[1]
-    
     if(board[r][c].value === 9){
       board[r][c].revealed = true
       gameStop = true
@@ -236,7 +231,7 @@
   //Convert id to corresponding r,c location of board
   function convertId(id){
     let r = parseInt(id/boardSizes[playerDifficulty])
-    let c = id%boardSizes[playerDifficulty]
+    let c = parseInt(id%boardSizes[playerDifficulty])
     return [r,c]
   }
   //Check for winner
