@@ -38,9 +38,10 @@ Although it was hard to make it works as expected at the beginning, I'm glad I m
 ## Credits
 + Chiptune music found at [modarchive.org](https://modarchive.org/index.php?request=view_by_moduleid&query=66187)
 + XM file convert to MP3 from [coolutils.com](https://www.coolutils.com/online/XM-to-MP3)
++ Sound effects from [freesound.org](freesound.org)
 ---
 ## Whats Next?
 + [ ] Add flagging feature! 🚩 It was included in the plan but I could not figure out how to. 😟
 + [ ] Add scoreboard with user name! 💯 
-+ [ ] Add more sound effects! 🎧 Back ground music alone is never enough!
++ [ ] Add more sound effects! 🎧 
 + [ ] Add light/dark mode.For your eyes!

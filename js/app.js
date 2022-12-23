@@ -1,5 +1,5 @@
   /*---------- Constants ----------*/
-  import * as bgmAudio from '../js/audios.js'
+  import * as sounds from '../js/audios.js'
   const boardSizes = [8,10,12] // 0 easy 1 medium 3 hard
   const mineNums = [10,20,30]
   const bomb = '💣'
@@ -40,7 +40,7 @@
 
   /*---------- Event Listeners ----------*/
   boardEl.addEventListener('click',handleClick)
-  resetBtnEl.addEventListener('click',init)
+  resetBtnEl.addEventListener('click',handleReset)
   difficultiesEl.addEventListener('click',chooseDifficulty)
   bgmEl.addEventListener('click',handleBgm)
 
@@ -56,6 +56,7 @@
     drawBoard()
     render()
   }
+  
   //Create html elements
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
@@ -82,6 +83,7 @@
     }
   }
   function chooseDifficulty(event){
+    sounds.playClick()
     if(event.target.id === 'easy'){
       currentDifficulty = 0
     }else if(event.target.id === 'medium'){
@@ -176,12 +178,14 @@
         messageEl.textContent = 'You find all the bombs!'
         gameStop = true
       }else {
+        sounds.playBoom()
         messageEl.textContent = 'Boom!You lose!'
       }
     }
   }
   
   function handleClick (event){
+    sounds.playClick()
     let sqIdx 
     let sqId = event.target.getAttribute('id')
     if (sqId != null){
@@ -259,9 +263,12 @@
     updateMessage()
   }
   function handleBgm(){
-    bgmAudio.toggleBGM()
+    sounds.toggleBGM()
   }
-  
+  function handleReset(){
+    sounds.playRewind()
+    init()
+  }
   /*---------- Game init ----------*/
   init()
   
