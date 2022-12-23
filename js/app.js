@@ -40,6 +40,8 @@
 
   /*---------- Event Listeners ----------*/
   boardEl.addEventListener('click',handleClick)
+  boardEl.addEventListener('mouseover',handleMouseOver)
+  boardEl.addEventListener('mouseout',handleMouseOut)
   resetBtnEl.addEventListener('click',handleReset)
   difficultiesEl.addEventListener('click',chooseDifficulty)
   bgmEl.addEventListener('click',handleBgm)
@@ -56,7 +58,16 @@
     drawBoard()
     render()
   }
-  
+  function handleMouseOver(event){
+    if(event.target.id){
+      sounds.playPop()
+    }
+  }
+  function handleMouseOut(event){
+    if(event.target.id){
+      sounds.stopPop()
+    }
+  }
   //Create html elements
   function drawBoard(){
     const size = boardSizes[playerDifficulty]
