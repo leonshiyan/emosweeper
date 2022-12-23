@@ -3,6 +3,7 @@ let clickAudio = new Audio('../assets/click.wav')
 let boomAudio = new Audio('../assets/boom.wav')
 let rewindAudio = new Audio('../assets/rewind.wav')
 let popAudio = new Audio('../assets/pop.wav')
+let winAudio = new Audio('../assets/win.wav')
 function toggleBGM() {
   bgm.volume = 0.30
   bgm.loop = true
@@ -32,11 +33,15 @@ function stopPop(){
   popAudio.pause()
   popAudio.currentTime = 0;
 }
+function playWin(){
+  winAudio.play()
+}
 export {
   toggleBGM,
   playClick,
   playBoom,
   playRewind,
   playPop,
-  stopPop
+  stopPop,
+  playWin
 }

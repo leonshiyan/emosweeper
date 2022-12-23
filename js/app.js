@@ -186,6 +186,7 @@
   function updateMessage(){
     if(gameStop){
       if(win){
+        sounds.playWin()
         messageEl.textContent = 'You find all the bombs!'
         gameStop = true
       }else {
@@ -227,8 +228,6 @@
 
   //Recursive function to reveal 0s and adjacent 0s
   function dfs(r,c){
-    let nr = board.length
-    let nc = board[0].length
     if(!isValidMove(r,c) || board[r][c].revealed) {
       return
     }
@@ -280,6 +279,8 @@
     sounds.playRewind()
     init()
   }
+  /*---------- Function for devtool ----------*/
+  window.revealAll = revealAll
   /*---------- Game init ----------*/
   init()
   
