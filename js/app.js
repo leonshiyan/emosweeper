@@ -52,7 +52,7 @@
     gameStop = false
     win = false
     bombsEl.textContent = `Number of bombs ${mineNums[playerDifficulty]}`
-    messageEl.textContent='👇Make your first move👇'
+    messageEl.textContent = '👇Make your first move👇'
     boardInit(boardSizes[playerDifficulty])
     placeMine(playerDifficulty)
     drawBoard()
@@ -140,7 +140,7 @@
   function chooseEmptySpot(){
     let moves = []
     let size = boardSizes[playerDifficulty]
-    for (let i = 0; i < size ; i++) {
+    for(let i = 0; i < size ; i++) {
       for (let j = 0; j < size ; j++){
         if(board[i][j].value !== 9){
           moves.push([i,j])
@@ -155,7 +155,7 @@
   function updateBoard(){
     const squareEles = document.querySelectorAll('.sqr')
     const size = boardSizes[playerDifficulty]
-    for (let i = 0; i < size; i++) {
+    for(let i = 0; i < size; i++) {
       for(let j = 0; j < size; j++) {
         if(board[i][j].revealed){
           if(board[i][j].value === 0){
@@ -174,7 +174,7 @@
 
   function revealAll(){
     const size = boardSizes[playerDifficulty]
-    for (let i = 0; i < size; i++) {
+    for(let i = 0; i < size; i++) {
       for(let j = 0; j < size; j++) {
         board[i][j].revealed = true
       }
@@ -256,7 +256,7 @@
       return
     }
     const size = boardSizes[playerDifficulty]
-    for (let i = 0; i < size; i++) {
+    for(let i = 0; i < size; i++) {
       for(let j = 0; j < size; j++) {
         if(board[i][j].value != 9 && board[i][j].revealed == false){
           win =false
