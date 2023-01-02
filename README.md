@@ -36,7 +36,7 @@ Although it was hard to make it works as expected at the beginning, I'm glad I m
 + **CSS**
 
 ## Credits
-+ Text font from Google Font[Silkscreen](https://fonts.google.com/specimen/Silkscreen)
++ Text font from Google Font [Silkscreen](https://fonts.google.com/specimen/Silkscreen)
 + Chiptune music found at [modarchive.org](https://modarchive.org/index.php?request=view_by_moduleid&query=66187)
 + XM file convert to MP3 from [coolutils.com](https://www.coolutils.com/online/XM-to-MP3)
 + Sound effects from [freesound.org](freesound.org)
